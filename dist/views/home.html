@@ -5,8 +5,6 @@
 			<h3 align=center>Our Lipsmacking Culinary Creations</h3>
 		</div>
 		<div class="col-xs-12 col-sm-9 col-sm-pull-3">
-			<h4>Implement the Featured Dish Here</h4>
-
 			<div class="media-left media-meddle">
 				<a>
 					<img class="media-object img-thumbnail" ng-src={{dish.image}} alt="Uthappizza"></a>
@@ -15,10 +13,8 @@
 				<h2 class="media-heading">{{dish.name}}
 					<span class="label label-danger">{{dish.label}}</span>
 					<span class="badge">{{dish.price | currency}}</span></h2>
-				<p ng-show="showDetails">{{dish.description}}</p>
-
+				<p>{{dish.description}}</p>
 			</div>
-
 		</div>
 	</div>
 
@@ -36,10 +32,9 @@
 				<h2 class="media-heading">{{promotion.name}}
 					<span class="label label-danger">{{promotion.label}}</span>
 					<span class="badge">{{promotion.price | currency}}</span></h2>
-				<p ng-show="showDetails">{{promotion.description}}</p>
+				<p>{{promotion.description}}</p>
 
 			</div>
-			<h4>Implement the Promotion Here</h4>
 		</div>
 	</div>
 
@@ -55,16 +50,9 @@
 			</div>
 			<div class="media-body">
 				<h2 class="media-heading">{{info.name}}
-					
 					<span class="badge">{{info.designation}}</span></h2>
-				<p ng-show="showDetails">{{info.description}}</p>
-
+				<p>{{info.description}}</p>
 			</div>
-
-
-
-
-			<h4>Implement the Executive Chef Info Here</h4>
 		</div>
 	</div>
 </div>
