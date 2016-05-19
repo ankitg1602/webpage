@@ -118,13 +118,10 @@ angular.module('confusionApp')
         }])
 
 .controller('IndexController', ['$scope', 'menuFactory', 'corporateFactory', function ($scope, menuFactory, corporateFactory) {
-	alert(menuFactory.getDish(1));
-	$scope.dish = menuFactory.getDish(parseInt('1', 10));
-	console.log("dish:" + $scope.dish);
+	$scope.dish = menuFactory.getDish(0);
 	$scope.promotion = menuFactory.getPromotion(0);
-	console.log("dishhh:" + $scope.promotion);
-	$scope.info = corporateFactory.getLeader(4);
-	console.log("dishh:" + $scope.info);
+	$scope.info = corporateFactory.getLeader(3);
+	//console.log("dishh:" + $scope.info);
 
 }])
 
