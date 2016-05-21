@@ -37,7 +37,7 @@ angular.module('confusionApp')
 	// that returns a selected promotion.
 
 
-}])
+		}])
 
 .factory('corporateFactory', function () {
 
