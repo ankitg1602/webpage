@@ -84,6 +84,9 @@ angular.module('confusionApp')
 			console.log('incorrect');
 		} else {
 			$scope.invalidChannelSelection = false;
+			/*feedbackFactory.saveFeed().update({
+				id: $scope.feedback.id
+			}, $scope.feedback);*/
 			$scope.feedback = {
 				mychannel: "",
 				firstName: "",
@@ -169,14 +172,33 @@ angular.module('confusionApp')
 	}, function (response) {
 		$scope.message = "Error: " + response.status + " " + response.statusText;
 	});
-	$scope.promotion = menuFactory.getPromotion(0);
-	$scope.info = corporateFactory.getLeader(3);
-	//console.log("dishh:" + $scope.info);
+	$scope.promotion = menuFactory.getPromotion().get({
+		id: 0
+	}).$promise.then(function (response) {
+		$scope.promotion = response;
+		$scope.showDish = true;
+	}, function (response) {
+		$scope.message = "Error: " + response.status + " " + response.statusText;
+	});
+	$scope.info = corporateFactory.getLeader().get({
+		id: 0
+	}).$promise.then(function (response) {
+		$scope.info = response;
+		$scope.showDish = true;
+	}, function (response) {
+		$scope.message = "Error: " + response.status + " " + response.statusText;
+	});
 
-}])
+			}])
 
 .controller('AboutController', ['$scope', 'corporateFactory', function ($scope, corporateFactory) {
-	$scope.leaders = corporateFactory.getLeaders();
+	$scope.leaders = corporateFactory.getLeader().query(function (response) {
+		$scope.info = response;
+		$scope.showDish = true;
+	}, function (response) {
+		$scope.message = "Error: " + response.status + " " + response.statusText;
+	});
+
 }])
 
 

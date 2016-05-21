@@ -30,16 +30,21 @@
 			<h3 align=center>This Month's Promotions</h3>
 		</div>
 		<div class="col-xs-12 col-sm-9">
-			<div class="media-left media-meddle">
-				<a>
-					<img class="media-object img-thumbnail" ng-src={{promotion.image}} alt="Uthappizza"></a>
+			<div ng-if="!showDish">
+				<h3>{{message}}</h3>
 			</div>
-			<div class="media-body">
-				<h2 class="media-heading">{{promotion.name}}
+			<div class="media" ng-if="showDish">
+				<div class="media-left media-meddle">
+					<a>
+						<img class="media-object img-thumbnail" ng-src={{promotion.image}} alt="Uthappizza"></a>
+				</div>
+				<div class="media-body">
+					<h2 class="media-heading">{{promotion.name}}
 					<span class="label label-danger">{{promotion.label}}</span>
 					<span class="badge">{{promotion.price | currency}}</span></h2>
-				<p>{{promotion.description}}</p>
+					<p>{{promotion.description}}</p>
 
+				</div>
 			</div>
 		</div>
 	</div>
@@ -50,14 +55,19 @@
 			<h3 align=center>Meet our Culinary Specialists</h3>
 		</div>
 		<div class="col-xs-12 col-sm-9 col-sm-pull-3">
-			<div class="media-left media-meddle">
-				<a>
-					<img class="media-object img-thumbnail" ng-src={{info.image}} alt="Uthappizza"></a>
+			<div ng-if="!showDish">
+				<h3>{{message}}</h3>
 			</div>
-			<div class="media-body">
-				<h2 class="media-heading">{{info.name}}
+			<div class="media" ng-if="showDish">
+				<div class="media-left media-meddle">
+					<a>
+						<img class="media-object img-thumbnail" ng-src={{info.image}} alt="Uthappizza"></a>
+				</div>
+				<div class="media-body">
+					<h2 class="media-heading">{{info.name}}
 					<span class="badge">{{info.designation}}</span></h2>
-				<p>{{info.description}}</p>
+					<p>{{info.description}}</p>
+				</div>
 			</div>
 		</div>
 	</div>
