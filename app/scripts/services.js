@@ -67,15 +67,15 @@ angular.module('confusionApp')
 
 }])
 
-.factory('feedbackFactory ', ['$resource', 'baseURL', function ($resource, baseURL) {
-	/*var feedFact = {};
+.factory('feedbackFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
+	var feedFact = {};
 	feedFact.saveFeed = function () {
-		return $resource(baseURL + "feedback/:id", nul, {
-			'update': {
-				method: 'PUT'
+		return $resource(baseURL + "feedback/:id", null, {
+			'save': {
+				method: 'POST'
 			}
 		});
 	}
-	return feedFact;*/
+	return feedFact;
 
 }]);

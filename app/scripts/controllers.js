@@ -73,7 +73,7 @@ angular.module('confusionApp')
 
         }])
 
-.controller('FeedbackController', ['$scope', function ($scope) {
+.controller('FeedbackController', ['$scope', 'feedbackFactory', function ($scope, feedbackFactory) {
 
 	$scope.sendFeedback = function () {
 
@@ -84,9 +84,9 @@ angular.module('confusionApp')
 			console.log('incorrect');
 		} else {
 			$scope.invalidChannelSelection = false;
-			/*feedbackFactory.saveFeed().update({
+			feedbackFactory.saveFeed().save({
 				id: $scope.feedback.id
-			}, $scope.feedback);*/
+			}, $scope.feedback);
 			$scope.feedback = {
 				mychannel: "",
 				firstName: "",
