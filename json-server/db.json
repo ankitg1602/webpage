@@ -210,6 +210,31 @@
     }
   ],
   "feedback": [
-
+    {
+      "mychannel": "tel",
+      "firstName": "fghj",
+      "lastName": "hjh",
+      "agree": true,
+      "email": "hj@gmail.com",
+      "tel": {
+        "areaCode": "hh",
+        "number": "fgg"
+      },
+      "comments": "ghhg",
+      "id": 1
+    },
+    {
+      "mychannel": "Email",
+      "firstName": "fghjk",
+      "lastName": "gthyjuikl",
+      "agree": true,
+      "email": "jh@gmail.com",
+      "tel": {
+        "areaCode": "fghjk",
+        "number": "fghj"
+      },
+      "comments": "ejhwjew",
+      "id": 2
+    }
   ]
 }
