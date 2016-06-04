@@ -31,8 +31,13 @@
     "node": ">=0.10.0"
   },
   "dependencies": {
+    "assert": "^1.4.1",
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
+    "mongod": "^1.3.0",
+    "mongodb": "^2.1.21",
+    "mongoose": "^4.4.19",
+    "mongoose-currency": "^0.2.0",
     "morgan": "^1.7.0",
     "yargs": "^4.7.1"
   }
