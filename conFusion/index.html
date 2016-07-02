@@ -51,7 +51,7 @@
                          aria-hidden="true"></span>Home</a></li>
                     <li><a href="#"><span class="glyphicon glyphicon-info-sign"></span>About</a></li>
                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                        <a class="dropdown-toggle" data-toggle="dropdown"
                          role="button" aria-haspopup="true" aria-expanded="false">
                          Menu <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -69,7 +69,7 @@
                     <li><a href="#">Contact</a></li>
                 </ul>
                  <ul class="nav navbar-nav navbar-right">
-                    <li><a data-toggle="modal" data-target="#loginModal">
+                    <li><a style="cursor:pointer" id="loginModal1">
                     <span class="glyphicon glyphicon-log-in"></span> Login</a>
                     </li>
                 </ul>
@@ -180,7 +180,7 @@
                         </div>
 						<div class="col-xs-12 col-sm-2">
 							<p style="padding:40px"></p>
-                                                <a data-toggle="modal" type="button" class="btn btn-warning btn-block" data-target="#reserveModal">
+                                                <a id="reserveTable1" type="button" class="btn btn-warning btn-block">
                  Reserve Table</a>
                     
 							
@@ -404,7 +404,20 @@
                         $("#carousel-play").click(function(){
                 $("#mycarousel").carousel('cycle');
             });
+ $("#loginModal1").click(function(){
+        $("#loginModal").modal();
+    });
+$("#reserveTable1").click(function(){
+        $("#reserveModal").modal();
+    });
         });
+
+//function showLoginModel(){
+//$('#loginModal').modal({
+  //keyboard: false
+//})
+//$('#loginModal').modal('show');
+//}
     </script>
     </body>
 </html>
