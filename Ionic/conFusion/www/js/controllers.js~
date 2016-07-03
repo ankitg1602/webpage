@@ -217,19 +217,29 @@ $scope.baseURL = baseURL;
             
                     }])
 
-.controller('FavoritesController', ['$scope', 'menuFactory', 'favoriteFactory', 'baseURL', '$ionicListDelegate', function ($scope, menuFactory, favoriteFactory, baseURL, $ionicListDelegate) {
+.controller('FavoritesController', ['$scope', 'menuFactory', 'favoriteFactory', 'baseURL', '$ionicListDelegate', '$ionicPopup', '$ionicLoading', '$timeout', function ($scope, menuFactory, favoriteFactory, baseURL, $ionicListDelegate, $ionicPopup, $ionicLoading, $timeout) {
 
     $scope.baseURL = baseURL;
     $scope.shouldShowDelete = false;
 
+ $ionicLoading.show({
+        template: '<ion-spinner></ion-spinner> Loading...'
+    });
+
     $scope.favorites = favoriteFactory.getFavorites();
 
-    $scope.dishes = menuFactory.getDishes().query(
+      $scope.dishes = menuFactory.getDishes().query(
         function (response) {
             $scope.dishes = response;
+            $timeout(function () {
+                $ionicLoading.hide();
+            }, 1000);
         },
         function (response) {
             $scope.message = "Error: " + response.status + " " + response.statusText;
+            $timeout(function () {
+                $ionicLoading.hide();
+            }, 1000);
         });
     console.log($scope.dishes, $scope.favorites);
 
@@ -238,12 +248,33 @@ $scope.baseURL = baseURL;
         console.log($scope.shouldShowDelete);
     }
 
-    $scope.deleteFavorite = function (index) {
+  /*  $scope.deleteFavorite = function (index) {
         
         favoriteFactory.deleteFromFavorites(index);
         $scope.shouldShowDelete = false;
 
-    }}])
+    }*/
+$scope.deleteFavorite = function (index) {
+
+        var confirmPopup = $ionicPopup.confirm({
+            title: 'Confirm Delete',
+            template: 'Are you sure you want to delete this item?'
+        });
+
+        confirmPopup.then(function (res) {
+            if (res) {
+                console.log('Ok to delete');
+                favoriteFactory.deleteFromFavorites(index);
+            } else {
+                console.log('Canceled delete');
+            }
+        });
+
+        $scope.shouldShowDelete = false;
+
+    }
+
+}])
 
 .filter('favoriteFilter', function () {
     return function (dishes, favorites) {
