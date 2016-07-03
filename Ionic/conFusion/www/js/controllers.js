@@ -157,12 +157,13 @@ $scope.baseURL = baseURL;
             };
         }])
 
-        .controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory','baseURL', function($scope, $stateParams, menuFactory,baseURL) {
-
+        .controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory','baseURL','$ionicPopover', 'favoriteFactory','$ionicModal','$timeout','$ionicListDelegate',function($scope, $stateParams, menuFactory,baseURL,$ionicPopover,favoriteFactory,$ionicModal,$timeout,$ionicListDelegate) {
+ 
             $scope.baseURL = baseURL;
             $scope.dish = {};
             $scope.showDish = false;
             $scope.message="Loading ...";
+
             
             $scope.dish = menuFactory.getDishes().get({id:parseInt($stateParams.id,10)})
             .$promise.then(
@@ -174,6 +175,73 @@ $scope.baseURL = baseURL;
                                 $scope.message = "Error: "+response.status + " " + response.statusText;
                             }
             );
+
+ 
+ $ionicPopover.fromTemplateUrl('templates/dish-detail-popover.html', {
+    scope: $scope
+  }).then(function(popover) {
+    $scope.popover = popover;
+  });
+
+ $scope.openPopover = function($event,dish) {
+$scope.dishId = dish.id;
+    $scope.popover.show($event);
+  };
+
+ $scope.addFavorite = function (index) {
+        console.log("index is " + $scope.dishId);
+        favoriteFactory.addToFavorites($scope.dishId);
+        $ionicListDelegate.closeOptionButtons();
+    }
+
+$ionicModal.fromTemplateUrl('templates/dish-comment.html', {
+    scope: $scope,
+    
+  }).then(function(modal) {
+    $scope.dishCommentForm = modal;
+  });
+
+$scope.addComment =function(){
+  $scope.dishCommentForm.show();
+}
+
+ // Triggered in the reserve modal to close it
+  $scope.closeDishComment = function() {
+    $scope.dishCommentForm.hide();
+  };
+
+  // Open the reserve modal
+  $scope.reserve = function() {
+    $scope.dishCommentForm.show();
+  };
+
+$scope.dishComment = {};
+
+
+
+  // Perform the reserve action when the user submits the reserve form
+  $scope.doDishComment = function() {
+$scope.dishComment.date = new Date().toISOString();
+$scope.dish.comments.push($scope.dishComment);
+    console.log('Doing reservation', $scope.dishComment);
+//menuFactory.getDishes().update({
+//			id: $scope.dish.id
+//		}, $scope.dish);
+		//$scope.dishCommentForm.$setPristine();
+		$scope.dishComment = {
+			rating: 5,
+			comment: "",
+			author: "",
+			date: ""
+		};
+
+
+    // Simulate a reservation delay. Remove this and replace with your reservation
+    // code if using a server system
+    $timeout(function() {
+      $scope.closeDishComment();
+    }, 1000);
+  };   
 
             
         }])
